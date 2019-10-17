@@ -101,9 +101,10 @@ drop table register;
 CREATE USER paulo2 WITH PASSWORD 'paulo';
 CREATE USER andre WITH PASSWORD 'andre';
 CREATE USER joao WITH PASSWORD '1234';
-GRANT UPDATE, DELETE, SELECT, ALTER ON categoria  TO paulo2;
+GRANT UPDATE, DELETE, SELECT on produto to paulo2;
 CREATE USER valdir WITH SUPERUSER ENCRYPTED PASSWORD '12345'; 
 CREATE ROLE admin1 WITH SUPERUSER ENCRYPTED PASSWORD '12345'; 
+
 -------------------------------------------------------------
 
 ------------Testes Banco de Dados-----------------------------
