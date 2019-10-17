@@ -95,3 +95,27 @@ drop table categoria;
 drop table departamento;
 drop table register;
 /* ====================================== */
+
+
+--------------------Usuarios Banco de Dados--------------
+
+
+
+CREATE USER paulo2 WITH PASSWORD 'paulo';
+CREATE USER andre WITH PASSWORD 'andre';
+CREATE USER joao WITH PASSWORD '1234';
+GRANT UPDATE,DELETE ON categoria  TO paulo2;
+CREATE USER valdir WITH SUPERUSER ENCRYPTED PASSWORD '12345'; 
+CREATE ROLE admin1 WITH SUPERUSER ENCRYPTED PASSWORD '12345'; 
+
+-------------------------------------------------------------
+
+
+
+------------Testes Banco de Dados-----------------------------
+
+insert into departamento values (1, 'Financeiro');
+insert into categoria values (1,'Contas', 1); 
+select * from categoria;
+delete from categoria where nome='MArcos'
+---------------------------------------------------------------
