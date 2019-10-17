@@ -1,3 +1,6 @@
+/* ============= Domain ================ */
+create domain preco AS DECIMAL(10, 2) check (value > 0);
+/* ===================================== */
 /* =========== Banco de dados ========== */
 create table departamento(
 	cod int primary key,
@@ -25,7 +28,6 @@ create table register(
 	id int
 );
 /* ===================================== */
-
 /* ============== Tirgget ============== */
 CREATE FUNCTION func_log() RETURNS trigger AS $BODY$
 BEGIN
@@ -43,9 +45,6 @@ CREATE TRIGGER triHistorico
 AFTER INSERT OR UPDATE OR DELETE ON produto
 FOR EACH ROW EXECUTE PROCEDURE func_log();
 /* ===================================== */
-/* ============= Domain ================ */
-create domain preco AS DECIMAL(10, 2) check (value > 0);
-/* ===================================== */
 
 /* Insere dentro do banco de dados as hierarquias */
 begin;
@@ -58,9 +57,7 @@ commit;
 begin work;
 insert into produto values (1, 'smartphone', 899.99, 'Smartphone com uma tela de 8 polegadas ...',  1);
 commit work;
-begin work;
-	select * from produto; /*Mostra tudo dentro de produtos*/ 
-commit work;
+select * from register; --mostra o gatilho
 /* Mostra um produto cadastrado, pois a transação foi realizada com sucesso */
 select * from produto;
 select * from register;
@@ -70,9 +67,7 @@ select * from register;
 begin; 
 	insert into produto values (2, 'Cadeira de escritorio', 430, 'Altura do chão regulavel, trava do encosto...', 2);
 rollback;
-begin work;
-	select * from produto; /*Mostra tudo dentro de produtos*/ 
-commit work;
+select * from register; --mostra o gatilho
 /* Mostra apenas um produto cadastrado, pois a transação nao foi realizada */
 select * from produto;
 /* ====================================== */
@@ -87,15 +82,6 @@ begin;
 	update produto set valor = 700 where cod_prod = 1;
 commit;
 /* ====================================== */
-
-/* ======= comandos de drop tables ====== */
-drop function func_log() cascade;
-drop table produto;
-drop table categoria;
-drop table departamento;
-drop table register;
-/* ====================================== */
-
 
 --------------------Usuarios Banco de Dados--------------
 CREATE USER paulo2 WITH PASSWORD 'paulo';
@@ -114,6 +100,13 @@ select * from categoria;
 delete from categoria where nome='Contas'
 ---------------------------------------------------------------
 
+/* ======= comandos de drop tables ====== */
+drop function func_log() cascade;
+drop table produto;
+drop table categoria;
+drop table departamento;
+drop table register;
+/* ====================================== */
 --backup manual cmd
 /*
 1. Loga como postgres
@@ -122,12 +115,4 @@ delete from categoria where nome='Contas'
 4. Apaga o banco antigo manualmente ou dropdb
 5. Cria o banco novamente
 6. pgdump nome_db < caminho/pro/backup.bkp
-*/
-
-/*
-CREATE ROLE clientes;
-CREATE ROLE gerentes;
-
-CREATE ROLE galvao LOGIN PASSWORD '123' IN ROLE clientes; --usuario pertence ao grupo clientes. ok
-CREATE ROLE mikeias LOGIN PASSWORD '123' IN ROLE gerentes;
 */
