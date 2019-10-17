@@ -128,6 +128,6 @@ delete from categoria where nome='MArcos'
 CREATE ROLE clientes;
 CREATE ROLE gerentes;
 
-CREATE ROLE galvao LOGIN PASSWORD '123' IN ROLE clientes;
+CREATE ROLE galvao LOGIN PASSWORD '123' IN ROLE clientes; --usuario pertence ao grupo clientes.
 CREATE ROLE mikeias LOGIN PASSWORD '123' IN ROLE gerentes;
 */
