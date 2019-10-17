@@ -56,7 +56,7 @@ commit;
 
 /* Teste de inseção e consulta com commit */
 begin work;
-	insert into produto values (1, 'smartphone', 899.99, 'Smartphone com uma tela de 8 polegadas ...',  1);
+insert into produto values (1, 'smartphone', 899.99, 'Smartphone com uma tela de 8 polegadas ...',  1);
 commit work;
 begin work;
 	select * from produto; /*Mostra tudo dentro de produtos*/ 
@@ -111,7 +111,7 @@ CREATE ROLE admin1 WITH SUPERUSER ENCRYPTED PASSWORD '12345';
 insert into departamento values (1, 'Financeiro');
 insert into categoria values (1,'Contas', 1); 
 select * from categoria;
-delete from categoria where nome='MArcos'
+delete from categoria where nome='Contas'
 ---------------------------------------------------------------
 
 --backup manual cmd
