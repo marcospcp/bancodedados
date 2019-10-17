@@ -55,7 +55,7 @@ commit;
 
 /* Teste de inseção e consulta com commit */
 begin work;
-insert into produto values (1, 'smartphone', 899.99, 'Smartphone com uma tela de 8 polegadas ...',  1);
+	insert into produto values (15, 'smartphone', 899.99, 'Smartphone com uma tela de 8 polegadas ...',  1);
 commit work;
 select * from register; --mostra o gatilho
 /* Mostra um produto cadastrado, pois a transação foi realizada com sucesso */
@@ -65,7 +65,7 @@ select * from register;
 
 /* ==== Teste de inseção com rollback === */
 begin; 
-	insert into produto values (2, 'Cadeira de escritorio', 430, 'Altura do chão regulavel, trava do encosto...', 2);
+	insert into produto values (4, 'Cadeira de escritorio', 430, 'Altura do chão regulavel, trava do encosto...', 2);
 rollback;
 select * from register; --mostra o gatilho
 /* Mostra apenas um produto cadastrado, pois a transação nao foi realizada */
@@ -84,13 +84,11 @@ commit;
 /* ====================================== */
 
 --------------------Usuarios Banco de Dados--------------
-CREATE USER paulo2 WITH PASSWORD 'paulo';
 CREATE USER andre WITH PASSWORD 'andre';
 CREATE USER joao WITH PASSWORD '1234';
-GRANT UPDATE, DELETE, SELECT on produto to paulo2;
-CREATE USER valdir WITH SUPERUSER ENCRYPTED PASSWORD '12345'; 
+GRANT UPDATE, DELETE, SELECT on produto to andre; --privilegios
+CREATE USER valdir WITH SUPERUSER ENCRYPTED PASSWORD '12345'; --Senha com maior segurança
 CREATE ROLE admin1 WITH SUPERUSER ENCRYPTED PASSWORD '12345'; 
-
 -------------------------------------------------------------
 
 ------------Testes Banco de Dados-----------------------------
@@ -107,6 +105,7 @@ drop table categoria;
 drop table departamento;
 drop table register;
 /* ====================================== */
+
 --backup manual cmd
 /*
 1. Loga como postgres
