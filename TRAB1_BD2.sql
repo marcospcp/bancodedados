@@ -79,7 +79,7 @@ select * from produto;
 
 /* ===== Tratamento de concorrencia ===== */
 begin;
-	lock produto; --Consegue visualizar
+	lock table produto; --Consegue visualizar
 	--Transação intermediaria
 	begin;
 		select * from produto;
@@ -128,6 +128,6 @@ delete from categoria where nome='MArcos'
 CREATE ROLE clientes;
 CREATE ROLE gerentes;
 
-CREATE ROLE galvao LOGIN PASSWORD '123' IN ROLE clientes; --usuario pertence ao grupo clientes.
+CREATE ROLE galvao LOGIN PASSWORD '123' IN ROLE clientes; --usuario pertence ao grupo clientes. ok
 CREATE ROLE mikeias LOGIN PASSWORD '123' IN ROLE gerentes;
 */
