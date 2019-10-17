@@ -79,7 +79,7 @@ select * from produto;
 
 /* ===== Tratamento de concorrencia ===== */
 begin;
-	lock table produto; --Consegue visualizar
+	lock table produto in access exclusive mode; --Consegue visualizar
 	--Transação intermediaria
 	begin;
 		select * from produto;
